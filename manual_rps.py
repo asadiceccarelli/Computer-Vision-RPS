@@ -2,7 +2,7 @@ import random
 
 options = ['R', 'P', 'S']
 
-
+in
 def get_computer_choice(options):
     computer_choice = random.choice(options)
     return computer_choice

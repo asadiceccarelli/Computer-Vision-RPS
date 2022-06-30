@@ -15,20 +15,26 @@ def get_user_choice():
 
 def get_winner(computer_choice, user_choice):
     if computer_choice == 'R' and user_choice == 'P':
-        return 'You won!'
+        print('You won!')
     elif computer_choice == 'R' and user_choice == 'S':
-        return 'Sorry, you lose.'
+        print('Sorry, you lose.')
     elif computer_choice == 'P' and user_choice == 'R':
-        return 'Sorry, you lose.'
+        print('Sorry, you lose.')
     elif computer_choice == 'P' and user_choice == 'S':
-        return 'You won!'
+        print('You won!')
     elif computer_choice == 'S' and user_choice == 'R':
-        return 'You won!'
+        print('You won!')
     elif computer_choice == 'S' and user_choice == 'P':
-        return 'Sorry, you lose.'
+        print('Sorry, you lose.')
     elif computer_choice == user_choice:
-        return 'Draw.'
+        print('Draw.')
     else:
-        return 'Sorry, you did not enter a valid choice.'
+        print('Sorry, you did not enter a valid choice.')
 
-print('test')
+
+def play():
+    computer_choice = get_computer_choice(options)
+    user_choice = get_user_choice()
+    return get_winner(computer_choice, user_choice)
+
+play()

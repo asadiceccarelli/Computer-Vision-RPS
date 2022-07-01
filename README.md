@@ -8,7 +8,9 @@
 
 - The model keras_model.hs and the text files containing the labels, labels.txt, was downloaded from Teachable Machine.
 
-> Insert image of Teachable Machine here.
+![Teachable Machine](ReadMe_Images/Teachable_Machine.png 'Teachable Machine')
+
+> Creating the Teachable Machine model.
 
 ## Milestone 2
 
@@ -17,8 +19,6 @@
     - It also allows someone else who needs to use the code to know exactly what packages they need to run it on their machine.
 
 - The following code was copied from the AiCore Portal, to make use of the model downloaded from Teachable Machine.
-
-- Copied code below:
 
 ```python
 import cv2
@@ -47,6 +47,8 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+> The copied code.
+
 - The above code is a little challenging to understand with my current level of knowledge, however the main key points are to understand that the variable predictions contains the output of the model, and each element in the output corresponds to the probability of the input image representing a particular class.
 
 
@@ -57,7 +59,9 @@ cv2.destroyAllWindows()
 ```python
 import random
 
-options = ['R', 'P', 'S']
+options = ['Rock', 'Paper', 'Scissors']
+computer_wins = 0
+user_wins = 0
 
 
 def get_computer_choice(options):
@@ -66,27 +70,35 @@ def get_computer_choice(options):
 
 
 def get_user_choice():
-    user_choice = input('Please enter either R, P, or S: ')
+    user_choice = input('Please enter either Rock, Paper, or Scissors: ')
     return user_choice
 
 
 def get_winner(computer_choice, user_choice):
-    if computer_choice == 'R' and user_choice == 'P':
-        print('You won!')
-    elif computer_choice == 'R' and user_choice == 'S':
-        print('Sorry, you lose.')
-    elif computer_choice == 'P' and user_choice == 'R':
-        print('Sorry, you lose.')
-    elif computer_choice == 'P' and user_choice == 'S':
-        print('You won!')
-    elif computer_choice == 'S' and user_choice == 'R':
-        print('You won!')
-    elif computer_choice == 'S' and user_choice == 'P':
-        print('Sorry, you lose.')
+    global computer_wins, user_wins
+    if computer_choice == 'Rock' and user_choice == 'Paper':
+        print('You won! Paper beats Rock.')
+        user_wins += 1
+    elif computer_choice == 'Rock' and user_choice == 'Scissors':
+        print('You lose. Rock beats Scissors.')
+        computer_wins += 1
+    elif computer_choice == 'Paper' and user_choice == 'Rock':
+        print('You lose. Paper beats Rock')
+        computer_wins += 1
+    elif computer_choice == 'Paper' and user_choice == 'Scissors':
+        print('You won! Scissors beats Paper.')
+        user_wins += 1
+    elif computer_choice == 'Scissors' and user_choice == 'Rock':
+        print('You won! Rock beats Scissors.')
+        user_wins += 1
+    elif computer_choice == 'Scissors' and user_choice == 'Paper':
+        print('You lose. Scissors beats Paper.')
+        computer_wins += 1
     elif computer_choice == user_choice:
         print('Draw.')
     else:
         print('Sorry, you did not enter a valid choice.')
+    
 
 
 def play():
@@ -94,15 +106,50 @@ def play():
     user_choice = get_user_choice()
     return get_winner(computer_choice, user_choice)
 
-play()
-
 ```
+
+> This shows the code of the manual_rps.py program.
 
 ## Milestone 4
 
+- A new file named camera_rps.py was created for the code of the final Rock-Paper-Scissors game using the camera.
+    - Here copied code for the camera input was turned into a function get_prediction and imported into camera_rps.py.
+    - The function get_winner was also copied from the manual_rps.py game and inserted into camera_rps.py.
+
+- A timer function was also added to the get_prediction function to count down from 3.
+
+- A feature was added where the first person (user or computer) to reach 3 wins would win the game was added.
+
+```python
+while computer_wins < 3 and user_wins < 3: 
+    prediction = get_prediction()
+    computer_choice = get_computer_choice()
+    choice_probability = {'Rock': prediction[0,0], 'Paper': prediction[0,1], 'Scissors': prediction[0,2]}
+    user_prediction = max(choice_probability, key=choice_probability.get)
+
+    print(f'\nComputer went with {computer_choice}.')
+    print(f'You went with {user_prediction}.')
+    game_result = get_winner(computer_choice, user_prediction)
+    print(f'\nSCORE: You: {user_wins} vs. {computer_wins} Computer\n')
+    time.sleep(1)
+    if computer_wins == 3:
+        print(f'Computer has reach 3 wins. You have lost the game.\n')
+        break
+    elif user_wins == 3:
+        print(f'You have reach 3 wins. Congratulations, you have won the game!\n')
+        break
+```
+
+> The main while loop in camera_rps.py
 
 ## Conclusions
 
-- Maybe write a conclusion to the project, what you understood about it and also how you would improve it or take it further.
+- Although the initial code on using the computer vision software was difficult to decipher, once a clear plan was established on how to go about the rest of the program it was not too challenging.
 
-- Read through your documentation, do you understand everything you've written? Is everything clear and cohesive?
+- This was the first project where I have stuck to using git to work on different branches, before commiting them and pushing them to GitHub all via the terminal. It was confusing at first and I had a couple of problems along the way (especially with .DS_Store files), but eventually I got my head around it. I will continue to use git throghout future project as it is far neater than creating various 'x_copy_test_version2' files along the way to do various tests, and is an important part of any collaborative work in software.
+
+### Future additions
+- Recreate model on Teachable Machine with more photos in order to improve accuracy
+- Print countdown on web display
+- Include a message such as 'press c to continue'
+- Recreate progam using OOP rather than multiple different functions

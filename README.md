@@ -148,6 +148,10 @@ while computer_wins < 3 and user_wins < 3:
 
 - This was the first project where I have stuck to using git to work on different branches, before commiting them and pushing them to GitHub all via the terminal. It was confusing at first and I had a couple of problems along the way (especially with .DS_Store files), but eventually I got my head around it. I will continue to use git throghout future project as it is far neater than creating various 'x_copy_test_version2' files along the way to do various tests, and is an important part of any collaborative work in software.
 
+## Further Work
+
+- Since completing this project I have created another file oop_rps.py which works in the same way as camera_rps.py, but uses Object Orientated Programming, creating a class RPS. This is a little cleaner than using multiple functions as was previously done.
+
 ### Future additions
 - Recreate model on Teachable Machine with more photos in order to improve accuracy
 - Print countdown on web display

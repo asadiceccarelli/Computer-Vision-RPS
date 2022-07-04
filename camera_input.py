@@ -22,6 +22,9 @@ def get_prediction():
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     while True: 
+        # Press q to close the window
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
         ret, frame = cap.read()
         resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
         image_np = np.array(resized_frame)
@@ -33,9 +36,6 @@ def get_prediction():
         cv2.imshow('frame', frame)
         timer()
         return prediction
-        # Press q to close the window
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
                 
     # After the loop release the cap object
     cap.release()

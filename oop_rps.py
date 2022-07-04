@@ -100,6 +100,6 @@ class RPS:
                 print(f'You have reach {self.wins_needed} wins. Congratulations, you have won the game!\n')
                 return
 
-
-game = RPS(wins_needed = 3)
-game.play_game()
+if __name__ == '__main__':
+    game = RPS(wins_needed = 3)
+    game.play_game()

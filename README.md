@@ -49,7 +49,7 @@ cv2.destroyAllWindows()
 
 > The copied code.
 
-- The above code is a little challenging to understand with my current level of knowledge, however the main key points are to understand that the variable predictions contains the output of the model, and each element in the output corresponds to the probability of the input image representing a particular class.
+- The above code is a little challenging to understand but the main key points are to understand that the variable predictions contains the output of the model, and each element in the output corresponds to the probability of the input image representing a particular class.
 
 
 ## Milestone 3
@@ -156,4 +156,3 @@ while computer_wins < 3 and user_wins < 3:
 - Recreate model on Teachable Machine with more photos in order to improve accuracy
 - Print countdown on web display
 - Include a message such as 'press c to continue'
-- Recreate progam using OOP rather than multiple different functions
